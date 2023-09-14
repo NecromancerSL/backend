@@ -1,11 +1,12 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../config/database';
-import { Adress } from './Adress';
+import { Endereco } from './Endereco';
 import { Pedido } from './Pedido';
 import { Produto } from './Produto';
 import { ItemPedido } from './ItemPedido';
+import { UsuarioEndereco } from './UsuarioEndereco';
 
-export interface UserInterface extends Model {
+export interface UsuarioInterface extends Model {
     id: number;
     name: string;
     email: string;
@@ -14,7 +15,7 @@ export interface UserInterface extends Model {
     telefone: string;
 }
 
-export const User = sequelize.define<UserInterface>(
+export const Usuario = sequelize.define<UsuarioInterface>(
     'User', {
         id: {
             primaryKey: true,
@@ -43,22 +44,22 @@ export const User = sequelize.define<UserInterface>(
             allowNull: false,
         },
     }, {
-        tableName: 'users',
+        tableName: 'usuarios',
         timestamps: false,
     }
 );
 
-User.hasMany(Adress, { foreignKey: 'userId' });
-Adress.hasMany(User, { foreignKey: 'adressId' });
+Usuario.belongsToMany(Endereco, { through: UsuarioEndereco, foreignKey: 'usuarioId' });
+Endereco.belongsToMany(Usuario, { through: UsuarioEndereco, foreignKey: 'enderecoId' });
 
-User.hasMany(Pedido, { foreignKey: 'userId' });
-Pedido.belongsTo(User, { foreignKey: 'userId' });
+Usuario.hasMany(Pedido, { foreignKey: 'usuarioId' });
+Pedido.belongsTo(Usuario, { foreignKey: 'usuarioId' });
 
-Pedido.hasMany(ItemPedido, { foreignKey: 'pedidoId' });
 Produto.hasMany(ItemPedido, { foreignKey: 'produtoId' });
-ItemPedido.belongsTo(Pedido, { foreignKey: 'pedidoId' });
 ItemPedido.belongsTo(Produto, { foreignKey: 'produtoId' });
 
+Pedido.hasMany(ItemPedido, { foreignKey: 'pedidoId' });
+ItemPedido.belongsTo(Pedido, { foreignKey: 'pedidoId' });
 
 
 sequelize.sync();

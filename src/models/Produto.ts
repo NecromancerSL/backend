@@ -22,7 +22,7 @@ export const Produto = sequelize.define<ProdutoInterface>(
             allowNull: false,
         },
         descricao: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING(300),
             allowNull: false,
         },
         preco: {
@@ -30,7 +30,7 @@ export const Produto = sequelize.define<ProdutoInterface>(
             allowNull: false,
         },
         imagem: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING(300),
             allowNull: false,
         },
         qntEstoque: {

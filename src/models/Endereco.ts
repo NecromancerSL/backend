@@ -1,8 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../config/database';
-import { User } from './User';
 
-export interface AdressInterface extends Model {
+export interface EnderecoInterface extends Model {
     id: number;
     cep: string;
     rua: string;
@@ -13,7 +12,7 @@ export interface AdressInterface extends Model {
     estado: string;
 }
 
-export const Adress = sequelize.define<AdressInterface>(
+export const Endereco = sequelize.define<EnderecoInterface>(
     'Adress', {
         id: {
             primaryKey: true,
@@ -49,7 +48,7 @@ export const Adress = sequelize.define<AdressInterface>(
         },
 
     }, {
-        tableName: 'adresses',
+        tableName: 'enderecos',
         timestamps: false,
        }
 );
