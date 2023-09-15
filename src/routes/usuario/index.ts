@@ -6,5 +6,7 @@ const usuarioRoutes = Router();
 usuarioRoutes.use(bodyParser.json());
 
 usuarioRoutes.post('/cadastrarusuario', UsuarioController.cadastrarUsuario);
+usuarioRoutes.put('/editarusuario/:id', UsuarioController.editarUsuario);
+usuarioRoutes.delete('/excluirusuario/:id', UsuarioController.excluirUsuario);
 
 export default usuarioRoutes;
