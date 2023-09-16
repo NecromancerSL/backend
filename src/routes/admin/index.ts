@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 const adminRoutes = Router();
 adminRoutes.use(bodyParser.json());
 
-adminRoutes.post('/criaradmin', AdminController.create);
-adminRoutes.post('/login', AdminController.login);
+adminRoutes.post('/cadastraradmin', AdminController.cadastrarAdmin);
+adminRoutes.post('/loginadmin', AdminController.loginAdmin);
 
 export default adminRoutes;

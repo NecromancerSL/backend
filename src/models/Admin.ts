@@ -25,7 +25,7 @@ export const Admin = sequelize.define<AdminInterface>(
             allowNull: false,
         },
         password: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING(1000),
             allowNull: false,
         }
         }, {

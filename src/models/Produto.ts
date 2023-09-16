@@ -5,6 +5,7 @@ export interface ProdutoInterface extends Model {
     id: number;
     nome: string;
     descricao: string;
+    categoria: string;
     preco: number;
     imagem: string;
     qntEstoque: number;
@@ -23,6 +24,10 @@ export const Produto = sequelize.define<ProdutoInterface>(
         },
         descricao: {
             type: DataTypes.STRING(300),
+            allowNull: false,
+        },
+        categoria: {
+            type: DataTypes.STRING(50),
             allowNull: false,
         },
         preco: {
