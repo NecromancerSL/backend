@@ -8,5 +8,6 @@ const produtoRoutes = Router();
 produtoRoutes.use(bodyParser.json());
 
 produtoRoutes.post('/criarproduto', ProdutoController.cadastrarProduto);
+produtoRoutes.get('/listarprodutos', ProdutoController.listarProdutos);
 
 export default produtoRoutes;
