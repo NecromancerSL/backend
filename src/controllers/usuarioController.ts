@@ -85,4 +85,22 @@ export const loginUsuario = async (req: Request, res: Response) => {
     } catch (error) {
       return res.status(500).json(error);
     }
-  };
+};
+
+export const nomeUsuario = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    // Use o método `findByPk` do Sequelize para encontrar o usuário pelo ID
+    const usuario = await Usuario.findByPk(id);
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuário não encontrado" });
+    }
+
+    const nomeUsuario = usuario.name;
+    return res.json({ nome: nomeUsuario });
+  } catch (error) {
+    console.error("Erro ao buscar nome do usuário:", error);
+    return res.status(500).json({ error: "Erro interno do servidor" });
+  }
+};
