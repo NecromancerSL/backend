@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+/* import { Request, Response } from "express";
 import { Usuario } from "../models/Usuario";
 import bcrypt from "bcryptjs";
 
 export const cadastrarUsuario = async (req: Request, res: Response) => {
-    const { name, email, password, cpf, telefone } = req.body;
+    const { name, email, password, cpf, telefone } = req.body.user;
 
     try {
 
@@ -104,3 +104,4 @@ export const nomeUsuario = async (req: Request, res: Response) => {
     return res.status(500).json({ error: "Erro interno do servidor" });
   }
 };
+ */

@@ -1,14 +1,10 @@
-import * as UsuarioController from '../../controllers/usuarioController';
+import { loginUsuarioController } from '../../controllers/usuario/LoginUsuarioControler';
 import { Router } from 'express';
 import bodyParser from 'body-parser';
 
 const usuarioRoutes = Router();
 usuarioRoutes.use(bodyParser.json());
 
-usuarioRoutes.post('/cadastrarusuario', UsuarioController.cadastrarUsuario);
-usuarioRoutes.put('/editarusuario/:id', UsuarioController.editarUsuario);
-usuarioRoutes.delete('/excluirusuario/:id', UsuarioController.excluirUsuario);
-usuarioRoutes.post('/loginusuario', UsuarioController.loginUsuario);
-usuarioRoutes.get('/nomeusuario/:id', UsuarioController.nomeUsuario);
+usuarioRoutes.post('/loginusuario', loginUsuarioController.login);
 
 export default usuarioRoutes;

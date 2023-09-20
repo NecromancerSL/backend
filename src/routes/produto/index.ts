@@ -1,17 +1,19 @@
-import * as ProdutoController from '../../controllers/produtoController';
+import { createProdutoController } from '../../controllers/produto/CreateProdutoController';
+import { deleteProdutoController } from '../../controllers/produto/DeleteProdutoController';
+import { getAllProdutosController } from '../../controllers/produto/GetAllProdutosController';
+import { getProdutoByIdController } from '../../controllers/produto/GetProdutoByIdController';
+import { updateProdutoController } from '../../controllers/produto/UpdateProdutoController';
 import { Router } from 'express';
 import bodyParser from 'body-parser';
-
 
 const produtoRoutes = Router();
 
 produtoRoutes.use(bodyParser.json());
 
-produtoRoutes.post('/criarproduto', ProdutoController.cadastrarProduto);
-produtoRoutes.get('/listarprodutos', ProdutoController.listarProdutos);
-produtoRoutes.post('/atualizarproduto/:id', ProdutoController.atualizarProduto);
-produtoRoutes.get('/listarproduto/:id', ProdutoController.listarProduto);
-produtoRoutes.delete('/deletarproduto/:id', ProdutoController.deletarProduto);
-
+produtoRoutes.post('/criarproduto', createProdutoController.handle);
+produtoRoutes.get('/listarprodutos', getAllProdutosController.handle);
+produtoRoutes.post('/atualizarproduto/:id', updateProdutoController.handle);
+produtoRoutes.get('/listarproduto/:id', getProdutoByIdController.handle);
+produtoRoutes.delete('/deletarproduto/:id', deleteProdutoController.handle);
 
 export default produtoRoutes;
