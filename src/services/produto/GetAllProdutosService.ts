@@ -1,6 +1,6 @@
 import { Produto } from '../../models/Produto';
 
-export class getAllProdutosService {
+export class GetAllProdutosService {
     async execute() {
         const produtos = await Produto.findAll();
 

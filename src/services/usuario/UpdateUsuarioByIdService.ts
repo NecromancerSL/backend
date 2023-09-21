@@ -1,7 +1,7 @@
 import { Usuario } from "../../models/Usuario";
 import  { IUsuarioData } from "../../interfaces/IUsuario";
 
-export class updateUsuarioById {
+export class UpdateUsuarioById {
     async execute( id: number , { name, email, password, cpf, telefone }: IUsuarioData) {
 
         const usuario = await Usuario.findByPk(id);

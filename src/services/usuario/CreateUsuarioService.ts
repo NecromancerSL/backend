@@ -2,7 +2,7 @@ import { Usuario } from "../../models/Usuario";
 import { IUsuarioData } from "../../interfaces/IUsuario";
 import bcrypt from "bcryptjs";
 
-export class createUsuarioService {
+export class CreateUsuarioService {
     async execute({ name, email, password, cpf, telefone }: IUsuarioData) {
         try {
 

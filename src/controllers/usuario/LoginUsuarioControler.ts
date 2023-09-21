@@ -1,11 +1,11 @@
-import { loginUsuarioService } from "../../services/usuario/LoginUsuarioService";
+import { LoginUsuarioService } from "../../services/usuario/LoginUsuarioService";
 import { Request, Response } from "express";
 
 class LoginUsuarioController {
   async login(request: Request, response: Response) {
     const { email, password } = request.body;
 
-    const loginUsuario= new loginUsuarioService();
+    const loginUsuario= new LoginUsuarioService();
 
     try {
       const user = await loginUsuario.execute({ email, password });

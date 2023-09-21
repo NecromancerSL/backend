@@ -1,6 +1,6 @@
 import { Produto } from '../../models/Produto';
 
-export class getProductByIdService {
+export class GetProductByIdService {
     async execute(id: number) {
         const produto = await Produto.findByPk(id);
 

@@ -1,7 +1,7 @@
 import { Produto } from "../../models/Produto";
 import { IProdutoData } from "../../interfaces/IProduto";
 
-export class createProdutoService {
+export class CreateProdutoService {
     async execute({ nome, preco, descricao, imagem, categoria, qntEstoque }: IProdutoData) {
         try{
             

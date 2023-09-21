@@ -1,7 +1,7 @@
 import { Usuario } from '../../models/Usuario';
 import { IUsuarioData } from '../../interfaces/IUsuario';
 
-export class deleteUsuarioService {
+export class DeleteUsuarioService {
   async execute(id: number) {
     try {
       const usuario = await Usuario.destroy({

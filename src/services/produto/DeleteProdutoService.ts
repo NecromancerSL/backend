@@ -1,6 +1,6 @@
 import { Produto } from '../../models/Produto';
 
-export class deleteProductService {
+export class DeleteProductService {
     async execute(id: number) {
         const produto = await Produto.findByPk(id);
 

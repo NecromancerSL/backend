@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import { Usuario } from '../../models/Usuario';
 import { IUsuarioLoginData } from '../../interfaces/IUsuario';
 
-export class loginUsuarioService {
+export class LoginUsuarioService {
   async execute({ email, password }: IUsuarioLoginData) {
     try {
       // Encontre o usuário pelo email fornecido
