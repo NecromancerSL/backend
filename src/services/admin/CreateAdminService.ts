@@ -1,12 +1,28 @@
 import { Admin } from '../../models/Admin';
 import { IAdminData } from '../../interfaces/IAdmin';
-import bcrypt from 'bcryptjs';
+import { hash } from 'bcryptjs';
 
 export class createAdminService {
     async execute({ name, email, password }: IAdminData) {
         try {
 
-            const hashedPassword = await bcrypt.hash(password, 10);
+          if(!email) {
+            throw new Error("Email incorreto")
+          }
+
+          const adminExistente = await Admin.findOne({
+            where: {
+              email: email,
+            },
+          })
+
+          if(adminExistente) {
+            throw new Error("Administrador já existe")
+          }
+
+
+            const hashedPassword = await hash(password, 10);
+
             const admin = await Admin.create({
               name,
               email,
@@ -15,8 +31,8 @@ export class createAdminService {
 
             return admin;
 
-          } catch (error) {
-                throw error;
+        }catch(error) {
+            throw error;
           }
     }
 }
