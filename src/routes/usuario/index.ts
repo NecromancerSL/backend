@@ -1,4 +1,5 @@
 import { loginUsuarioController } from '../../controllers/usuario/LoginUsuarioControler';
+import { createUsuarioController } from '../../controllers/usuario/CreateUsuarioController';
 import { Router } from 'express';
 import bodyParser from 'body-parser';
 
@@ -6,5 +7,6 @@ const usuarioRoutes = Router();
 usuarioRoutes.use(bodyParser.json());
 
 usuarioRoutes.post('/loginusuario', loginUsuarioController.login);
+usuarioRoutes.post('/cadastrarusuario', createUsuarioController.handle);
 
 export default usuarioRoutes;

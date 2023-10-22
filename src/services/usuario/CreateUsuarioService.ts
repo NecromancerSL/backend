@@ -6,8 +6,6 @@ export class CreateUsuarioService {
     async execute({ name, email, password, cpf, telefone }: IUsuarioData) {
         try {
 
-           
-
             if(!email) {
               throw new Error("Email incorreto")
             }
