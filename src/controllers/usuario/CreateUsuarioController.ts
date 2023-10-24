@@ -1,22 +1,16 @@
-import { Request, Response } from 'express';
-import { CreateUsuarioService } from '../../services/usuario/CreateUsuarioService';
+import { createUserService } from "../../services/usuario/CreateUsuarioService";
+import { Request, Response } from "express";
 
-class CreateUsuarioController {
+class CreateUserController {
     async handle(request: Request, response: Response) {
         const { name, email, password, cpf, telefone } = request.body;
 
-        const createUsuario = new CreateUsuarioService();
+        const createUser = new createUserService();
 
-        const usuario = await createUsuario.execute({
-            name,
-            email,
-            password,
-            cpf,
-            telefone,
-        });
+        const admin = await createUser.execute({ name, email, password, cpf, telefone });
 
-        return response.json(usuario);
+        return response.json(admin);
     }
 }
 
-export const createUsuarioController = new CreateUsuarioController();
+export const createUserController = new CreateUserController();

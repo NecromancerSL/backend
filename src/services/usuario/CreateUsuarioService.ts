@@ -1,49 +1,40 @@
-import { Usuario } from "../../models/Usuario";
-import { IUsuarioData } from "../../interfaces/IUsuario";
-import { hash } from "bcryptjs";
+import { Usuario } from '../../models/Usuario';
+import { IUsuarioData } from '../../interfaces/IUsuario';
+import { hash } from 'bcryptjs';
 
-export class CreateUsuarioService {
-    async execute({ name, email, password, cpf, telefone }: IUsuarioData) {
+export class createUserService {
+    async execute({ name, email, password, cpf , telefone }: IUsuarioData) {
         try {
 
-            if(!email) {
-              throw new Error("Email incorreto")
-            }
+          if(!email) {
+            throw new Error("Email incorreto")
+          }
 
-            const usuarioExistente = await Usuario.findOne({
-              where: {
-                email: email,
-              },
-            })
+          const userExistente = await Usuario.findOne({
+            where: {
+              email: email,
+            },
+          })
 
-            if(usuarioExistente) {
-              throw new Error("Usuário já existe")
-            }
+          if(userExistente) {
+            throw new Error("Usuário ja cadastrado")
+          }
+
 
             const hashedPassword = await hash(password, 10);
 
-            const usuario = await Usuario.create({
-              data: {
-                name,
-                email,
-                password: hashedPassword,
-                cpf,
-                telefone,
-              },
-              select: {
-                id: true,
-                name: true,
-                email: true,
-                cpf: true,
-                telefone: true,
-              }
-             
+            const user = await Usuario.create({
+              name,
+              email,
+              password: hashedPassword,
+              cpf,
+              telefone
             });
 
-            return usuario;
+            return user;
 
-          } catch (error) {
-                throw error;
+        }catch(error) {
+            throw error;
           }
     }
 }
