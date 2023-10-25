@@ -16,8 +16,12 @@ class LoginAdminController {
 
       // Gere um token JWT após a autenticação bem-sucedida
       const token = generateAdminToken(admin.id);
-
-      return response.json({ message: 'Autenticação bem-sucedida', token });
+      return response.json({
+        token,
+        id: admin.id, // Substitua por como você obtém o ID do usuário
+        name: admin.name, // Substitua por como você obtém o nome do usuário
+      });
+      
     } catch (error) {
       return response.status(500).json(error);
     }
