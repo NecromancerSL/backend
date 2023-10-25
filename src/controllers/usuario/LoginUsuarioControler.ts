@@ -1,11 +1,11 @@
-import { LoginUsuarioService } from "../../services/usuario/LoginUsuarioService";
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
+import { LoginUsuarioService } from '../../services/usuario/LoginUsuarioService';
+import { generateUserToken } from '../../utils/AuthUserToken'; // Importe a função de geração de token
 
 class LoginUsuarioController {
   async login(request: Request, response: Response) {
     const { email, password } = request.body;
-
-    const loginUsuario= new LoginUsuarioService();
+    const loginUsuario = new LoginUsuarioService();
 
     try {
       const user = await loginUsuario.execute({ email, password });
@@ -14,9 +14,14 @@ class LoginUsuarioController {
         return response.status(401).json({ message: 'Credenciais inválidas' });
       }
 
-      // Autenticação bem-sucedida, aqui você pode gerar um token de autenticação, por exemplo
-      // e retornar informações do usuário, se necessário
-      return response.json({ message: 'Autenticação bem-sucedida', user });
+      // Gere um token JWT após a autenticação bem-sucedida
+      const token = generateUserToken(user.id);
+      return response.json({
+        token,
+        id: user.id, // Substitua por como você obtém o ID do usuário
+        name: user.name, // Substitua por como você obtém o nome do usuário
+      });
+
     } catch (error) {
       return response.status(500).json(error);
     }
