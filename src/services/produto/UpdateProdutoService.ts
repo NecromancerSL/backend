@@ -2,7 +2,7 @@ import { Produto } from '../../models/Produto';
 import { IProdutoData } from '../../interfaces/IProduto';
 
 export class UpdateProdutoService {
-    async execute(id: number, { nome, preco, descricao, categoria, imagem, qntEstoque }: IProdutoData) {
+    async execute(id: number, { nome, preco, descricao, categoria, marca, imagem, qntEstoque }: IProdutoData) {
         const produto = await Produto.findByPk(id);
 
         if (!produto) {
@@ -16,6 +16,7 @@ export class UpdateProdutoService {
                     preco,
                     descricao,
                     categoria,
+                    marca,
                     imagem,
                     qntEstoque,
                 },

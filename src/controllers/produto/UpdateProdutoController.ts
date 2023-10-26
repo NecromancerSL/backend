@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 class UpdateProdutoController {
     async handle(request: Request, response: Response) {
         const { id } = request.params;
-        const { nome, preco, descricao, imagem, categoria, qntEstoque } = request.body;
+        const { nome, preco, descricao, imagem, categoria, marca, qntEstoque } = request.body;
 
         const updateProdutoService = new UpdateProdutoService(); 
 
@@ -13,6 +13,7 @@ class UpdateProdutoController {
             preco,
             descricao,
             categoria,
+            marca,
             imagem,
             qntEstoque
         });

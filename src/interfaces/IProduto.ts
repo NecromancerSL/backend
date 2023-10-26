@@ -3,6 +3,7 @@ export interface IProdutoData {
     preco: number;
     descricao: string;
     categoria: string;
+    marca: string;
     imagem: string;
     qntEstoque: number;
 }
