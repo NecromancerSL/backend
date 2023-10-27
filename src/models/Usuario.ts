@@ -4,7 +4,6 @@ import { Endereco } from './Endereco';
 import { Pedido } from './Pedido';
 import { Produto } from './Produto';
 import { ItemPedido } from './ItemPedido';
-import { UsuarioEndereco } from './UsuarioEndereco';
 
 export interface UsuarioInterface extends Model {
     id: number;
@@ -49,8 +48,8 @@ export const Usuario = sequelize.define<UsuarioInterface>(
     }
 );
 
-Usuario.belongsToMany(Endereco, { through: UsuarioEndereco, foreignKey: 'usuarioId' });
-Endereco.belongsToMany(Usuario, { through: UsuarioEndereco, foreignKey: 'enderecoId' });
+Endereco.belongsTo(Usuario, { foreignKey: 'usuarioId' });
+Usuario.hasMany(Endereco, { foreignKey: 'usuarioId' }); 
 
 Usuario.hasMany(Pedido, { foreignKey: 'usuarioId' });
 Pedido.belongsTo(Usuario, { foreignKey: 'usuarioId' });
