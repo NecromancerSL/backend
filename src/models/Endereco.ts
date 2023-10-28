@@ -6,6 +6,7 @@ export interface EnderecoInterface extends Model {
     cep: string;
     rua: string;
     numero: number;
+    apelido: string;
     complemento: string;
     bairro: string;
     cidade: string;
@@ -30,6 +31,10 @@ export const Endereco = sequelize.define<EnderecoInterface>(
         },
         numero: {
             type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        apelido: {
+            type: DataTypes.STRING(50),
             allowNull: false,
         },
         complemento: {
