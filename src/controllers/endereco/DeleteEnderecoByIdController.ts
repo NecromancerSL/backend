@@ -1,20 +1,16 @@
-import { Request, Response } from 'express';
-import { DeleteEnderecoByIdService } from '../../services/endereco/DeleteEnderecoByIdService'; // Certifique-se de importar o serviço corretamente
+import { DeleteEnderecoService } from "../../services/endereco/DeleteEnderecoByIdService";
+import { Request, Response } from "express";
 
-class DeleteEnderecoByIdController {
-  async handle(req: Request, res: Response) {
-    try {
-      const { id } = req.params; // Certifique-se de que o nome do parâmetro corresponda à rota no servidor
-      const enderecoId = parseInt(id);
+class DeleteEnderecoController {
+    async handle(request: Request, response: Response) {
+        const { id } = request.params;
 
-      const deleteEnderecoService = new DeleteEnderecoByIdService();
-      const result = await deleteEnderecoService.execute(enderecoId);
+        const deleteEndereco= new DeleteEnderecoService();
 
-      return res.status(200).json(result);
-    } catch (error) {
-      return res.status(404).json({ error: 'Endereço não encontrado' });
+        await deleteEndereco.execute(Number(id));
+
+        return response.json({ message: "Produto deletado com sucesso!" });
     }
-  }
 }
 
-export const deleteEnderecoByIdController = new DeleteEnderecoByIdController();
+export const deleteEnderecoController = new DeleteEnderecoController();
