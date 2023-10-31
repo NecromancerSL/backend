@@ -1,12 +1,13 @@
-import { Model, DataTypes} from 'sequelize';
+import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../config/database';
 
-
-export interface PedidoInterface extends Model{
+export interface PedidoInterface extends Model {
     id: number;
     qnt: number;
     valorTotal: number;
-    status: string;
+    statusPedido: string; // Alteração do nome do campo
+    statusEntrega: string; // Novo campo
+    statusPagamento: string; // Novo campo
 }
 
 export const Pedido = sequelize.define<PedidoInterface>(
@@ -24,7 +25,15 @@ export const Pedido = sequelize.define<PedidoInterface>(
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-        status: {
+        statusPedido: { 
+            type: DataTypes.STRING(50),
+            allowNull: false,
+        },
+        statusEntrega: { 
+            type: DataTypes.STRING(50),
+            allowNull: false,
+        },
+        statusPagamento: { 
             type: DataTypes.STRING(50),
             allowNull: false,
         },
@@ -34,5 +43,5 @@ export const Pedido = sequelize.define<PedidoInterface>(
     }
 );
 
-
 sequelize.sync();
+
