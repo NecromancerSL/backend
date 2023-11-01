@@ -28,6 +28,7 @@ export const Pedido = sequelize.define<PedidoInterface>(
         statusPedido: { 
             type: DataTypes.STRING(50),
             allowNull: false,
+            defaultValue: 'Em andamento',
         },
         statusEntrega: { 
             type: DataTypes.STRING(50),
@@ -44,4 +45,3 @@ export const Pedido = sequelize.define<PedidoInterface>(
 );
 
 sequelize.sync();
-

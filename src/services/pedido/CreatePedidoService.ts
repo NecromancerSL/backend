@@ -4,51 +4,57 @@ import { ItemPedido } from '../../models/ItemPedido';
 
 export class CreatePedidoService {
   static async criarPedido(
-    usuarioId: number, // ID do usuário que está fazendo o pedido
+    usuarioId: number,
     produtos: Array<{ produtoId: number; qntProduto: number }>
   ) {
-    // 1. Crie um novo pedido com os campos atualizados
-    const pedido = await Pedido.create({
-      usuarioId,
-      qnt: 0,
-      valorTotal: 0,
-      statusPedido: 'Em andamento', // Inicialize o statusPedido
-      statusEntrega: 'Pendente', // Inicialize o statusEntrega
-      statusPagamento: 'Aguardando pagamento', // Inicialize o statusPagamento
-    });
+    try {
+      console.log('Recebida solicitação para criar um novo pedido.');
+      console.log('Dados da solicitação:', { usuarioId, produtos });
 
-    // 2. Itere pelos produtos e crie itens de pedido
-    for (const { produtoId, qntProduto } of produtos) {
-      const produto = await Produto.findByPk(produtoId);
-      if (!produto) {
-        // Trate o cenário onde o produto não existe
-        throw new Error(`Produto com ID ${produtoId} não encontrado.`);
-      }
-
-      if (produto.qntEstoque < qntProduto) {
-        // Trate o cenário onde a quantidade desejada é maior do que o estoque
-        throw new Error(`Quantidade desejada de ${produto.nome} indisponível.`);
-      }
-
-      // Crie um novo item de pedido
-      const valorTotal = produto.preco * qntProduto;
-      const itemPedido = await ItemPedido.create({
-        pedidoId: pedido.id,
-        produtoId,
-        qntProduto,
-        valorTotal,
+      const pedido = await Pedido.create({
+        usuarioId,
+        qnt: 0,
+        valorTotal: 0,
+        statusPedido: 'Em andamento',
+        statusEntrega: 'Pendente',
+        statusPagamento: 'Aguardando pagamento',
       });
 
-      // Atualize o estoque do produto
-      produto.qntEstoque -= qntProduto;
-      await produto.save();
+      console.log('Pedido criado com sucesso:', pedido);
 
-      // Atualize as informações do pedido
-      pedido.qnt += qntProduto;
-      pedido.valorTotal += valorTotal;
-      await pedido.save();
+      for (const { produtoId, qntProduto } of produtos) {
+        const produto = await Produto.findByPk(produtoId);
+
+        if (!produto) {
+          console.error(`Produto com ID ${produtoId} não encontrado.`);
+          throw new Error(`Produto com ID ${produtoId} não encontrado.`);
+        }
+
+        if (produto.qntEstoque < qntProduto) {
+          console.error(`Quantidade desejada de ${produto.nome} indisponível.`);
+          throw new Error(`Quantidade desejada de ${produto.nome} indisponível.`);
+        }
+
+        const valorTotal = produto.preco * qntProduto;
+        const itemPedido = await ItemPedido.create({
+          pedidoId: pedido.id,
+          produtoId,
+          qntProduto,
+          valorTotal,
+        });
+
+        produto.qntEstoque -= qntProduto;
+        await produto.save();
+
+        pedido.qnt += qntProduto;
+        pedido.valorTotal += valorTotal;
+        await pedido.save();
+      }
+
+      return pedido;
+    } catch (error) {
+      console.error('Erro ao criar o pedido:', error);
+      throw error;
     }
-
-    return pedido;
   }
 }
