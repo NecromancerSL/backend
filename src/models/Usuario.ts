@@ -35,11 +35,11 @@ export const Usuario = sequelize.define<UsuarioInterface>(
             allowNull: false,
         },
         cpf: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING(14),
             allowNull: false,
         },
         telefone: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING(15),
             allowNull: false,
         },
     }, {
