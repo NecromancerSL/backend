@@ -5,9 +5,11 @@ export interface PedidoInterface extends Model {
     id: number;
     qnt: number;
     valorTotal: number;
-    statusPedido: string; // Alteração do nome do campo
-    statusEntrega: string; // Novo campo
-    statusPagamento: string; // Novo campo
+    statusPedido: string;
+    statusEntrega: string; // Manter o campo statusEntrega
+    statusPagamento: string; // Manter o campo statusPagamento
+    tipoEntrega: string; // Novo campo tipoEntrega
+    tipoPagamento: string; // Novo campo tipoPagamento
 }
 
 export const Pedido = sequelize.define<PedidoInterface>(
@@ -35,6 +37,14 @@ export const Pedido = sequelize.define<PedidoInterface>(
             allowNull: false,
         },
         statusPagamento: { 
+            type: DataTypes.STRING(50),
+            allowNull: false,
+        },
+        tipoEntrega: { 
+            type: DataTypes.STRING(50),
+            allowNull: false,
+        },
+        tipoPagamento: { 
             type: DataTypes.STRING(50),
             allowNull: false,
         },

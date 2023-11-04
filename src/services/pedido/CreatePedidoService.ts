@@ -18,6 +18,8 @@ export class CreatePedidoService {
         statusPedido: 'Em andamento',
         statusEntrega: 'Pendente',
         statusPagamento: 'Aguardando pagamento',
+        tipoEntrega: 'Tipo de entrega aqui', // Defina o tipo de entrega desejado
+        tipoPagamento: 'Tipo de pagamento aqui', // Defina o tipo de pagamento desejado
       });
 
       console.log('Pedido criado com sucesso:', pedido);
