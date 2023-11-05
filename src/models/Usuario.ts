@@ -4,6 +4,7 @@ import { Endereco } from './Endereco';
 import { Pedido } from './Pedido';
 import { Produto } from './Produto';
 import { ItemPedido } from './ItemPedido';
+import { Comentario } from './Comentario';
 
 export interface UsuarioInterface extends Model {
     id: number;
@@ -60,5 +61,10 @@ ItemPedido.belongsTo(Produto, { foreignKey: 'produtoId' });
 Pedido.hasMany(ItemPedido, { foreignKey: 'pedidoId' });
 ItemPedido.belongsTo(Pedido, { foreignKey: 'pedidoId' });
 
+Pedido.hasMany(Comentario, { foreignKey: 'pedidoId' });
+Comentario.belongsTo(Pedido, { foreignKey: 'pedidoId' });
+
+Usuario.hasMany(Comentario, { foreignKey: 'usuarioId' });
+Comentario.belongsTo(Usuario, { foreignKey: 'usuarioId' });
 
 sequelize.sync();
