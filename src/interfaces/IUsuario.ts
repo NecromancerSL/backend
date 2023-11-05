@@ -10,3 +10,9 @@ export interface IUsuarioLoginData {
     email: string;
     password: string;
 }
+
+export interface IUsuarioUpdateData {
+    id: number;
+    currentPassword: string;
+    newPassword: string;
+}

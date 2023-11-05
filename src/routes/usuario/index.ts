@@ -2,6 +2,8 @@ import { loginUsuarioController } from '../../controllers/usuario/LoginUsuarioCo
 import { createUserController } from '../../controllers/usuario/CreateUsuarioController';
 import { getUserByIdController } from '../../controllers/usuario/GetUserByIdController';    
 import { updateUserByIdController } from '../../controllers/usuario/UpdateUserByIdController';
+import { updatePasswordController } from '../../controllers/usuario/UpdatePasswordController';
+import { deleteUsuarioController } from '../../controllers/usuario/DeleteUsuarioController';
 import { Router } from 'express';
 import bodyParser from 'body-parser';
 
@@ -12,5 +14,8 @@ usuarioRoutes.post('/loginusuario', loginUsuarioController.login);
 usuarioRoutes.post('/cadastrarusuario', createUserController.handle);
 usuarioRoutes.get('/listarusuario/:id', getUserByIdController.handle);
 usuarioRoutes.post('/atualizarusuario/:id', updateUserByIdController.handle);
+usuarioRoutes.post('/atualizarsenha/:id', updatePasswordController.handle);
+usuarioRoutes.delete('/deletarusuario/:id', deleteUsuarioController.handle);
+
 
 export default usuarioRoutes;
