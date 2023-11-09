@@ -61,8 +61,8 @@ ItemPedido.belongsTo(Produto, { foreignKey: 'produtoId' });
 Pedido.hasMany(ItemPedido, { foreignKey: 'pedidoId' });
 ItemPedido.belongsTo(Pedido, { foreignKey: 'pedidoId' });
 
-Pedido.hasMany(Comentario, { foreignKey: 'pedidoId' });
-Comentario.belongsTo(Pedido, { foreignKey: 'pedidoId' });
+Produto.hasMany(Comentario, { foreignKey: 'produtoId' });
+Comentario.belongsTo(Produto, { foreignKey: 'produtoId' });
 
 Usuario.hasMany(Comentario, { foreignKey: 'usuarioId' });
 Comentario.belongsTo(Usuario, { foreignKey: 'usuarioId' });
