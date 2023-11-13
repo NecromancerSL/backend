@@ -22,7 +22,7 @@ export const Comentario = sequelize.define<ComentarioInterface>(
             allowNull: false,
         },
         comentario: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING(10000),
             allowNull: false,
         },
         usuarioId: {
