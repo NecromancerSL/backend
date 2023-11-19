@@ -3,8 +3,7 @@ import { deleteProdutoController } from '../../controllers/produto/DeleteProduto
 import { getAllProdutosController } from '../../controllers/produto/GetAllProdutosController';
 import { getProdutoByIdController } from '../../controllers/produto/GetProdutoByIdController';
 import { updateProdutoController } from '../../controllers/produto/UpdateProdutoController';
-import { getProdutoByNameController } from '../../controllers/produto/GetProdutoByNameController';
-import { listProdutoByNameController } from '../../controllers/produto/ListProdutoByNameController';
+import { searchProdutoByNameController } from '../../controllers/produto/SearchProdutoByNameController';
 import { Router } from 'express';
 import bodyParser from 'body-parser';
 
@@ -17,8 +16,7 @@ produtoRoutes.get('/listarprodutos', getAllProdutosController.handle);
 produtoRoutes.post('/atualizarproduto/:id', updateProdutoController.handle);
 produtoRoutes.get('/listarproduto/:id', getProdutoByIdController.handle);
 produtoRoutes.delete('/deletarproduto/:id', deleteProdutoController.handle);
-produtoRoutes.get('/pesquisarprodutos/:nome', getProdutoByNameController.handle);
-produtoRoutes.get('/listarprodutos/:nome', listProdutoByNameController.handle);
+produtoRoutes.get('/buscarproduto/:nome', searchProdutoByNameController.handle);
 
 
 export default produtoRoutes;

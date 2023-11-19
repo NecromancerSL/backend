@@ -1,23 +1,25 @@
+import { Op } from "sequelize";
 import { Produto } from "../../models/Produto";
 import { IProdutoData } from "../../interfaces/IProduto";
-import { Op } from "sequelize";
 
-export class ListProdutoByNameService {
+export class SearchProdutoByNameService {
   async execute(nome: string): Promise<IProdutoData[]> {
     try {
       const produtos = await Produto.findAll({
         where: {
           nome: {
-            [Op.iLike]: `%${nome}%`,
+            [Op.like]: `%${nome}%`,
           },
         },
       });
 
       const produtosData: IProdutoData[] = produtos.map((produto) => produto.toJSON());
 
+      console.log('Produtos encontrados:', produtosData); // Adicione esta linha para debug
+
       return produtosData;
     } catch (error) {
-      console.error("Error fetching products by name:", error);
+      console.error("Error searching products by name:", error);
       throw error;
     }
   }
