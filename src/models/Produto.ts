@@ -24,7 +24,7 @@ export const Produto = sequelize.define<ProdutoInterface>(
             allowNull: false,
         },
         descricao: {
-            type: DataTypes.STRING(300),
+            type: DataTypes.STRING(1000),
             allowNull: false,
         },
         categoria: {
