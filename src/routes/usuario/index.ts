@@ -4,6 +4,7 @@ import { getUserByIdController } from '../../controllers/usuario/GetUserByIdCont
 import { updateUserByIdController } from '../../controllers/usuario/UpdateUserByIdController';
 import { updatePasswordController } from '../../controllers/usuario/UpdatePasswordController';
 import { deleteUsuarioController } from '../../controllers/usuario/DeleteUsuarioController';
+import { findUserByNameController } from '../../controllers/usuario/FindUserByNameController';
 import { Router } from 'express';
 import bodyParser from 'body-parser';
 
@@ -16,6 +17,7 @@ usuarioRoutes.get('/listarusuario/:id', getUserByIdController.handle);
 usuarioRoutes.post('/atualizarusuario/:id', updateUserByIdController.handle);
 usuarioRoutes.post('/atualizarsenha/:id', updatePasswordController.handle);
 usuarioRoutes.delete('/deletarusuario/:id', deleteUsuarioController.handle);
+usuarioRoutes.get('/buscarusuario/:name', findUserByNameController.handle);
 
 
 export default usuarioRoutes;
